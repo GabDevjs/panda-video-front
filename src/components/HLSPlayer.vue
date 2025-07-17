@@ -65,7 +65,6 @@
       controls
       preload="auto"
       playsinline
-      muted
       autoplay
       @loadstart="onLoadStart"
       @canplay="onCanPlay"
@@ -137,11 +136,15 @@ const onPause = () => {
 const tryAutoplay = async () => {
   if (videoElement.value) {
     try {
+      // Ativar áudio (desmutar)
+      videoElement.value.muted = false
+      // Tentar reproduzir
       await videoElement.value.play()
-      console.log('Autoplay iniciado com sucesso')
+      console.log('Autoplay iniciado com sucesso com áudio ativo')
     } catch (error) {
       console.log('Autoplay bloqueado pelo navegador:', error.message)
-      // Autoplay foi bloqueado, mas o vídeo está pronto para ser reproduzido manualmente
+      // Se autoplay falhar, ainda assim garantir que o áudio esteja ativo
+      videoElement.value.muted = false
     }
   }
 }
@@ -299,6 +302,8 @@ const useNativeVideo = () => {
     emit('ready')
     videoElement.value.removeEventListener('loadeddata', onNativeReady)
     videoElement.value.removeEventListener('canplay', onNativeReady)
+    // Ativar áudio para player nativo
+    videoElement.value.muted = false
     // Tentar autoplay com video nativo
     tryAutoplay()
   }

@@ -62,31 +62,36 @@
       </router-link>
     </div>
 
-    <!-- Conteúdo do vídeo -->
-    <div v-else-if="video" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <!-- Player e informações principais -->
-        <div class="lg:col-span-2">
-          <!-- Video Player -->
-          <div class="bg-black rounded-lg overflow-hidden mb-6">
-            <HLSPlayer
-              v-if="video.hls_path"
-              :src="hlsUrl"
-              :poster="thumbnailUrl"
-              class="w-full aspect-video"
-            />
-            <div v-else class="w-full aspect-video flex items-center justify-center">
-              <div class="text-white text-center">
-                <svg class="w-16 h-16 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M8 5v10l7-5-7-5z" />
-                </svg>
-                <p>Vídeo em processamento...</p>
-              </div>
+    <!-- Conteúdo do vídeo - Modo Teatro -->
+    <div v-else-if="video" class="w-full">
+      <!-- Video Player em modo teatro (full width) -->
+      <div class="w-full bg-black">
+        <div class="max-w-screen-2xl mx-auto">
+          <HLSPlayer
+            v-if="video.hls_path"
+            :src="hlsUrl"
+            :poster="thumbnailUrl"
+            class="w-full aspect-video"
+          />
+          <div v-else class="w-full aspect-video flex items-center justify-center">
+            <div class="text-white text-center">
+              <svg class="w-16 h-16 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M8 5v10l7-5-7-5z" />
+              </svg>
+              <p>Vídeo em processamento...</p>
             </div>
           </div>
+        </div>
+      </div>
 
-          <!-- Título e informações -->
-          <div class="bg-white rounded-lg p-6 shadow-sm">
+      <!-- Informações e sidebar abaixo do player -->
+      <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Informações principais -->
+          <div class="lg:col-span-2">
+
+            <!-- Título e informações -->
+            <div class="bg-white rounded-lg p-6 shadow-sm">
             <h1 class="text-2xl font-bold text-gray-900 mb-4">{{ video.title }}</h1>
             
             <div class="flex items-center justify-between flex-wrap gap-4 mb-6">
@@ -154,12 +159,12 @@
                 <div class="text-gray-600">{{ video.is_public ? 'Público' : 'Privado' }}</div>
               </div>
             </div>
+            </div>
           </div>
-        </div>
 
-        <!-- Sidebar com vídeos relacionados -->
-        <div class="lg:col-span-1">
-          <div class="bg-white rounded-lg shadow-sm p-6">
+          <!-- Sidebar com vídeos relacionados -->
+          <div class="lg:col-span-1">
+            <div class="bg-white rounded-lg shadow-sm p-6">
             <h3 class="text-lg font-semibold text-gray-900 mb-4">Vídeos Relacionados</h3>
             
             <div v-if="relatedVideos.length > 0" class="space-y-4">
@@ -195,6 +200,7 @@
                 <path d="M8 5v10l7-5-7-5z" />
               </svg>
               <p>Nenhum vídeo relacionado encontrado</p>
+            </div>
             </div>
           </div>
         </div>
