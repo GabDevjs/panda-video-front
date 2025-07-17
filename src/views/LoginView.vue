@@ -69,9 +69,18 @@
 
         <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-md">
           <h3 class="text-sm font-medium text-blue-800 mb-2">Credenciais de teste:</h3>
-          <p class="text-sm text-blue-700">
-            <strong>Usuário:</strong> testuser<br>
-            <strong>Senha:</strong> password
+          <div class="space-y-2 text-sm text-blue-700">
+            <p><strong>Admin:</strong> admin / admin123</p>
+            <p><strong>Usuário:</strong> testuser / test123</p>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <p class="text-sm text-gray-600">
+            Não tem uma conta? 
+            <router-link to="/register" class="font-medium text-primary-600 hover:text-primary-500">
+              Registre-se aqui
+            </router-link>
           </p>
         </div>
       </form>

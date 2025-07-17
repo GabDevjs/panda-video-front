@@ -38,6 +38,29 @@ export const useAuthStore = defineStore('auth', {
       }
     },
 
+    async register(userData) {
+      this.loading = true
+      this.error = null
+      
+      try {
+        const response = await api.post('/auth/register', userData)
+        const { token, user } = response.data
+        
+        this.token = token
+        this.user = user
+        
+        localStorage.setItem('token', token)
+        localStorage.setItem('user', JSON.stringify(user))
+        
+        return { success: true }
+      } catch (error) {
+        this.error = error.response?.data?.error || 'Erro ao criar conta'
+        return { success: false, error: this.error }
+      } finally {
+        this.loading = false
+      }
+    },
+
     logout() {
       this.user = null
       this.token = null
