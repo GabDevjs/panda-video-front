@@ -40,9 +40,9 @@
                   <div class="flex items-center justify-center space-x-6 text-sm text-gray-500">
                     <span>MP4, MOV, AVI</span>
                     <span>•</span>
-                    <span>Até 500MB</span>
+                    <span>Até 2GB</span>
                     <span>•</span>
-                    <span>Máx 20min</span>
+                    <span>Sem limite de duração</span>
                   </div>
                 </div>
                 
@@ -260,7 +260,7 @@
                 </svg>
               </div>
               <h4 class="font-medium text-gray-900">Tamanho</h4>
-              <p class="text-sm text-gray-600">Até 500MB e 20min</p>
+              <p class="text-sm text-gray-600">Até 2GB, sem limite de duração</p>
             </div>
             
             <div class="space-y-2">

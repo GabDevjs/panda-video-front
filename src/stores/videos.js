@@ -65,6 +65,7 @@ export const useVideosStore = defineStore('videos', {
           headers: {
             'Content-Type': 'multipart/form-data'
           },
+          timeout: 30 * 60 * 1000, // 30 minutos para uploads grandes
           onUploadProgress: (progressEvent) => {
             if (onProgress) {
               const progress = Math.round(
@@ -80,7 +81,11 @@ export const useVideosStore = defineStore('videos', {
         
         return response.data
       } catch (error) {
-        this.error = error.response?.data?.error || 'Erro ao fazer upload do vídeo'
+        if (error.code === 'ECONNABORTED' || error.message.includes('timeout')) {
+          this.error = 'Timeout no upload. Arquivo muito grande ou conexão lenta. Tente novamente.'
+        } else {
+          this.error = error.response?.data?.error || 'Erro ao fazer upload do vídeo'
+        }
         throw error
       } finally {
         this.uploading = false
