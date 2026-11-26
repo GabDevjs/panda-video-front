@@ -13,6 +13,17 @@ Interface web moderna para o sistema de hospedagem e processamento de vídeos Pa
 - **Dashboard**: Visualização de estatísticas e métricas
 - **Responsivo**: Funciona perfeitamente em desktop e mobile
 
+## Capturas da interface
+
+Frontend Vue real, compilado e executado localmente com respostas de API
+simuladas no navegador. Conta, vídeos, métricas e faturamento são dados de
+exemplo, não dados de produção. Nenhum vídeo foi enviado ou processado e
+nenhuma cobrança foi realizada durante a captura.
+
+![Dashboard com atividades de exemplo](docs/screenshots/dashboard.png)
+
+![Formulário de upload sem arquivo selecionado](docs/screenshots/upload.png)
+
 ## 📋 Pré-requisitos
 
 - Node.js 18+
